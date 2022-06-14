@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>product image slider</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <img id="featured" src="images/add-accessories-to-cart.png" alt="">
+
+    <img class="thumbnail" src="images/add-accessories-to-cart.png" alt="">
+    <img class="thumbnail" src="images/image-(5).png" alt="">
+    <img class="thumbnail" src="images/image-(6).png" alt="">
+
+    <script>
+        const thumbnails = document.getElementsByClassName('thumbnail')
+        const activeImages = document.getElementsByClassName('active')
+
+        for (let i = 0; i < thumbnails.length; i++) {
+            const element = thumbnails[i];
+            thumbnails[i].addEventListener('mouseover', function () {
+                console.log(activeImages);
+                if (activeImages.length > 0) {
+                    // a new item has gotten the active class, remove the old ones (first in list)
+                    activeImages[0].classList.remove('active')
+                }
+
+                this.classList.add('active')
+                document.getElementById('featured').src = this.src
+            })
+
+        }
+    </script>
+</body>
+
+</html>
