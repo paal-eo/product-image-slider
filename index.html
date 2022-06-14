@@ -44,7 +44,7 @@
       for (let i = 0; i < thumbnails.length; i++) {
         const element = thumbnails[i];
         thumbnails[i].addEventListener("click", function () {
-          console.log(activeImages);
+          //   console.log(activeImages);
           if (activeImages.length > 0) {
             // a new item has gotten the active class, remove the old ones (first in list)
             activeImages[0].classList.remove("active");
@@ -60,16 +60,22 @@
       const buttonRight = document.getElementById("slideRight");
 
       const slider = document.getElementById("slider");
+      const arrThumbnails = [...thumbnails];
       buttonLeft.addEventListener("click", () => {
-        document.getElementById("slider").scrollLeft -= 180;
-        // slider.scollTo({
-        //   left: (slider.scrollLeft -= 180),
-        //   behavior: "smooth",
-        // });
+        const activeImage = activeImages[0];
+        activeImage.classList.remove("active")
+        if (!activeImage.previousElementSibling.classList.add("active")) {
+          arrThumbnails[arrThumbnails.length].classList.add("active")
+        }
+        activeImage.scrollIntoView()
       });
-
+      
       buttonRight.addEventListener("click", () => {
-        document.getElementById("slider").scrollLeft += 180;
+        const activeImage = activeImages[0];
+        activeImage.classList.remove("active")
+        activeImage.nextElementSibling.classList.add("active")
+        activeImage.scrollIntoView()
+
       });
     </script>
   </body>
