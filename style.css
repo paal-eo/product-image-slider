@@ -1,6 +1,6 @@
 #featured {
     max-width: 500px;
-    max-height: 600px;
+    max-height: 300px;
     object-fit: cover;
     cursor: pointer;
     border: 2px solid black;
@@ -23,4 +23,31 @@
 .active {
     opacity: 1;
 
+}
+
+#slide-wrapper {
+    max-width: 500px;
+    display: flex;
+    min-height: 100px;
+    align-items: center;
+}
+
+#slider {
+    width: 440px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+}
+
+.arrow {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.arrow:hover {
+    opacity: .5;
+    width: 35px;
+    height: 35px;
 }

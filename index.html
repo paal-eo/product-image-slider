@@ -10,13 +10,19 @@
 </head>
 
 <body>
-    <img height="500px" id="featured" src="images/add-accessories-to-cart.png" alt="">
+    <img id="featured" src="images/add-accessories-to-cart.png" alt="">
     <br>
-    <img height="400px" class="thumbnail" src="images/add-accessories-to-cart.png" alt="">
-    <img height="400px" class="thumbnail" src="images/image-(5).png" alt="">
-    <img height="400px" class="thumbnail" src="images/image-(6).png" alt="">
-    <img height="400px" class="thumbnail" src="images/image-(5).png" alt="">
-    <img height="400px" class="thumbnail" src="images/image-(6).png" alt="">
+    <div id="slide-wrapper">
+        <img id="slideLeft" class="arrow" src="images/navigation/chevron-left.svg" alt="">
+        <div id="slider">
+            <img class="thumbnail" src="images/add-accessories-to-cart.png" alt="">
+            <img class="thumbnail" src="images/image-(5).png" alt="">
+            <img class="thumbnail" src="images/image-(6).png" alt="">
+            <img class="thumbnail" src="images/image-(4).png" alt="">
+            <img class="thumbnail" src="images/image-(7).png" alt="">
+        </div>
+        <img id="slideRight" class="arrow" src="images/navigation/chevron-right.svg" alt="">
+    </div>
 
     <script>
         const thumbnails = document.getElementsByClassName('thumbnail')
@@ -35,6 +41,21 @@
                 document.getElementById('featured').src = this.src
             })
         }
+
+
+
+        // event handlers
+        const buttonLeft = document.getElementById('slideLeft')
+        const buttonRight = document.getElementById('slideRight')
+
+        buttonLeft.addEventListener('click', () => {
+            document.getElementById('slider').scrollLeft -= 180
+        })
+
+        buttonRight.addEventListener('click', () => {
+            document.getElementById('slider').scrollLeft += 180
+        })
+
     </script>
 </body>
 
