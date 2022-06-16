@@ -9,7 +9,7 @@
   </head>
 
   <body>
-    <img id="featured" src="images/image-(30).png" alt="" />
+    <img id="featured" src="images/a2005_black_face.webp" alt="" />
     <br />
     <div id="slide-wrapper">
       <img
@@ -19,7 +19,15 @@
         alt=""
       />
       <div id="slider">
-        <img class="thumbnail active" src="images/image-(30).png" alt="" />
+        <img class="thumbnail active" src="images/a2005_black_face.webp" alt="" />
+        <img class="thumbnail" src="images/a2005_black_front.webp" alt="" />
+        <img class="thumbnail" src="images/a2005_black_side1.webp" alt="" />
+        <img class="thumbnail" src="images/a2005_black_side2.webp" alt="" />
+        <img class="thumbnail" src="images/a2005_black_face.webp" alt="" />
+        <img class="thumbnail" src="images/a2005_black_front.webp" alt="" />
+        <img class="thumbnail" src="images/a2005_black_side1.webp" alt="" />
+        <img class="thumbnail" src="images/a2005_black_side2.webp" alt="" />
+        <!-- <img class="thumbnail" src="images/image-(30).png" alt="" />
         <img class="thumbnail" src="images/image-(27).png" alt="" />
         <img class="thumbnail" src="images/image-(28).png" alt="" />
         <img class="thumbnail" src="images/image-(29).png" alt="" />
@@ -29,7 +37,7 @@
         <img class="thumbnail" src="images/image-(29).png" alt="" />
         <img class="thumbnail" src="images/image-(28).png" alt="" />
         <img class="thumbnail" src="images/image-(27).png" alt="" />
-        <img class="thumbnail" src="images/image-(29).png" alt="" />
+        <img class="thumbnail" src="images/image-(29).png" alt="" /> -->
       </div>
       <img
         id="slideRight"
@@ -71,6 +79,7 @@
           activeImage.classList.remove("active")
           activeImage.previousElementSibling.classList.add("active")
           document.getElementById('slider').scrollLeft -= activeImage.clientWidth + 14
+          document.getElementById('featured').src = activeImage.previousElementSibling.src
         }
         else {
           // const lastImg = arrThumbnails[arrThumbnails.length-1]
@@ -85,6 +94,7 @@
           activeImage.classList.remove("active")
           activeImage.nextElementSibling.classList.add("active");
           document.getElementById('slider').scrollLeft += activeImage.clientWidth + 14
+          document.getElementById('featured').src = activeImage.nextElementSibling.src
         }
         else {
           // const firstImg = arrThumbnails[0]
