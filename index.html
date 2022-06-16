@@ -1,33 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>product image slider</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
 
-  <body>
-    <img id="featured" src="images/a2005_black_face.webp" alt="" />
-    <br />
-    <div id="slide-wrapper">
-      <img
-        id="slideLeft"
-        class="arrow"
-        src="images/navigation/chevron-left.svg"
-        alt=""
-      />
-      <div id="slider">
-        <img class="thumbnail active" src="images/a2005_black_face.webp" alt="" />
-        <img class="thumbnail" src="images/a2005_black_front.webp" alt="" />
-        <img class="thumbnail" src="images/a2005_black_side1.webp" alt="" />
-        <img class="thumbnail" src="images/a2005_black_side2.webp" alt="" />
-        <img class="thumbnail" src="images/a2005_black_face.webp" alt="" />
-        <img class="thumbnail" src="images/a2005_black_front.webp" alt="" />
-        <img class="thumbnail" src="images/a2005_black_side1.webp" alt="" />
-        <img class="thumbnail" src="images/a2005_black_side2.webp" alt="" />
-        <!-- <img class="thumbnail" src="images/image-(30).png" alt="" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>product image slider</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <img id="featured" src="images/a2005_black_face.webp" alt="" />
+  <br />
+  <div id="slide-wrapper">
+    <img id="slideLeft" class="arrow" src="images/navigation/chevron-left.svg" alt="" />
+    <div id="slider">
+      <img class="thumbnail active" src="images/a2005_black_face.webp" alt="" />
+      <img class="thumbnail" src="images/a2005_black_front.webp" alt="" />
+      <img class="thumbnail" src="images/a2005_black_side1.webp" alt="" />
+      <img class="thumbnail" src="images/a2005_black_side2.webp" alt="" />
+      <img class="thumbnail" src="images/a2005_black_face.webp" alt="" />
+      <img class="thumbnail" src="images/a2005_black_front.webp" alt="" />
+      <img class="thumbnail" src="images/a2005_black_side1.webp" alt="" />
+      <img class="thumbnail" src="images/a2005_black_side2.webp" alt="" />
+      <!-- <img class="thumbnail" src="images/image-(30).png" alt="" />
         <img class="thumbnail" src="images/image-(27).png" alt="" />
         <img class="thumbnail" src="images/image-(28).png" alt="" />
         <img class="thumbnail" src="images/image-(29).png" alt="" />
@@ -38,69 +34,72 @@
         <img class="thumbnail" src="images/image-(28).png" alt="" />
         <img class="thumbnail" src="images/image-(27).png" alt="" />
         <img class="thumbnail" src="images/image-(29).png" alt="" /> -->
-      </div>
-      <img
-        id="slideRight"
-        class="arrow"
-        src="images/navigation/chevron-right.svg"
-        alt=""
-      />
     </div>
+    <img id="slideRight" class="arrow" src="images/navigation/chevron-right.svg" alt="" />
+  </div>
 
-    <script>
-      const thumbnails = document.getElementsByClassName("thumbnail");
-      const activeImages = document.getElementsByClassName("active");
+  <script>
+    const thumbnails = document.getElementsByClassName("thumbnail");
+    const activeImages = document.getElementsByClassName("active");
 
-      for (let i = 0; i < thumbnails.length; i++) {
-        const element = thumbnails[i];
-        thumbnails[i].addEventListener("click", function () {
-          //   console.log(activeImages);
-          if (activeImages.length > 0) {
-            // a new item has gotten the active class, remove the old ones (first in list)
-            activeImages[0].classList.remove("active");
-          }
+    for (let i = 0; i < thumbnails.length; i++) {
+      const element = thumbnails[i];
+      thumbnails[i].addEventListener("click", function () {
+        //   console.log(activeImages);
+        if (activeImages.length > 0) {
+          // a new item has gotten the active class, remove the old ones (first in list)
+          activeImages[0].classList.remove("active");
+        }
 
-          this.classList.add("active");
-          document.getElementById("featured").src = this.src;
-        });
-      }
+        this.classList.add("active");
+        document.getElementById("featured").src = this.src;
+      });
+    }
 
-      // event handlers
-      const buttonLeft = document.getElementById("slideLeft");
-      const buttonRight = document.getElementById("slideRight");
+    // event handlers
+    const buttonLeft = document.getElementById("slideLeft");
+    const buttonRight = document.getElementById("slideRight");
 
-      const slider = document.getElementById("slider");
-      const arrThumbnails = [...thumbnails];
+    const slider = document.getElementById("slider");
+    const arrThumbnails = [...thumbnails];
 
-      buttonLeft.addEventListener("click", () => {
-        const activeImage = activeImages[0];
 
-        if(activeImage.previousElementSibling) {
-          activeImage.classList.remove("active")
-          activeImage.previousElementSibling.classList.add("active")
+    let visibleImageIndexesBetween = [0, 2]
+
+    buttonLeft.addEventListener("click", () => {
+      const activeImage = activeImages[0];
+
+      if (activeImage.previousElementSibling) {
+        activeImage.classList.remove("active")
+        activeImage.previousElementSibling.classList.add("active")
+        document.getElementById('featured').src = activeImage.previousElementSibling.src
+        
+        const [minIndex, ] = visibleImageIndexesBetween
+        if (arrThumbnails.indexOf(activeImage) === minIndex) {
           document.getElementById('slider').scrollLeft -= activeImage.clientWidth + 14
-          document.getElementById('featured').src = activeImage.previousElementSibling.src
+          visibleImageIndexesBetween[0] -= 1
+          visibleImageIndexesBetween[1] -= 1
         }
-        else {
-          // const lastImg = arrThumbnails[arrThumbnails.length-1]
-          // lastImg.classList.add("active")
-        }
-      });
-      
-      buttonRight.addEventListener("click", () => {
-        const activeImage = activeImages[0];
+      }
+    });
 
-        if(activeImage.nextElementSibling) {
-          activeImage.classList.remove("active")
-          activeImage.nextElementSibling.classList.add("active");
+    buttonRight.addEventListener("click", () => {
+      const activeImage = activeImages[0];
+
+      if (activeImage.nextElementSibling) {
+        activeImage.classList.remove("active")
+        activeImage.nextElementSibling.classList.add("active");
+        document.getElementById('featured').src = activeImage.nextElementSibling.src
+
+        const [, maxIndex] = visibleImageIndexesBetween
+        if (arrThumbnails.indexOf(activeImage) === maxIndex) {
           document.getElementById('slider').scrollLeft += activeImage.clientWidth + 14
-          document.getElementById('featured').src = activeImage.nextElementSibling.src
+          visibleImageIndexesBetween[0] += 1
+          visibleImageIndexesBetween[1] += 1
         }
-        else {
-          // const firstImg = arrThumbnails[0]
-          // firstImg.classList.add("active")
-        }
-      });
-    </script>
-  </body>
+      }
+    });
+  </script>
+</body>
+
 </html>
