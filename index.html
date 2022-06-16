@@ -20,7 +20,7 @@
       />
       <div id="slider">
         <img
-          class="thumbnail"
+          class="thumbnail active"
           src="images/add-accessories-to-cart.png"
           alt=""
         />
@@ -61,11 +61,16 @@
 
       const slider = document.getElementById("slider");
       const arrThumbnails = [...thumbnails];
+
       buttonLeft.addEventListener("click", () => {
         const activeImage = activeImages[0];
         activeImage.classList.remove("active")
-        if (!activeImage.previousElementSibling.classList.add("active")) {
-          arrThumbnails[arrThumbnails.length].classList.add("active")
+        if(activeImage.previousElementSibling) {
+          activeImage.previousElementSibling.classList.add("active")
+        }
+        else {
+          const lastImg = arrThumbnails[arrThumbnails.length-1]
+          lastImg.classList.add("active")
         }
         activeImage.scrollIntoView()
       });
@@ -73,9 +78,14 @@
       buttonRight.addEventListener("click", () => {
         const activeImage = activeImages[0];
         activeImage.classList.remove("active")
-        activeImage.nextElementSibling.classList.add("active")
+        if(activeImage.nextElementSibling) {
+          activeImage.nextElementSibling.classList.add("active");
+        }
+        else {
+          const firstImg = arrThumbnails[0]
+          firstImg.classList.add("active")
+        }
         activeImage.scrollIntoView()
-
       });
     </script>
   </body>
