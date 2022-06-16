@@ -9,7 +9,7 @@
   </head>
 
   <body>
-    <img id="featured" src="images/add-accessories-to-cart.png" alt="" />
+    <img id="featured" src="images/image-(30).png" alt="" />
     <br />
     <div id="slide-wrapper">
       <img
@@ -19,15 +19,17 @@
         alt=""
       />
       <div id="slider">
-        <img
-          class="thumbnail active"
-          src="images/add-accessories-to-cart.png"
-          alt=""
-        />
-        <img class="thumbnail" src="images/image-(5).png" alt="" />
-        <img class="thumbnail" src="images/image-(6).png" alt="" />
-        <img class="thumbnail" src="images/image-(4).png" alt="" />
-        <img class="thumbnail" src="images/image-(7).png" alt="" />
+        <img class="thumbnail active" src="images/image-(30).png" alt="" />
+        <img class="thumbnail" src="images/image-(27).png" alt="" />
+        <img class="thumbnail" src="images/image-(28).png" alt="" />
+        <img class="thumbnail" src="images/image-(29).png" alt="" />
+        <img class="thumbnail" src="images/image-(28).png" alt="" />
+        <img class="thumbnail" src="images/image-(27).png" alt="" />
+        <img class="thumbnail" src="images/image-(29).png" alt="" />
+        <img class="thumbnail" src="images/image-(29).png" alt="" />
+        <img class="thumbnail" src="images/image-(28).png" alt="" />
+        <img class="thumbnail" src="images/image-(27).png" alt="" />
+        <img class="thumbnail" src="images/image-(29).png" alt="" />
       </div>
       <img
         id="slideRight"
@@ -64,28 +66,30 @@
 
       buttonLeft.addEventListener("click", () => {
         const activeImage = activeImages[0];
-        activeImage.classList.remove("active")
+
         if(activeImage.previousElementSibling) {
+          activeImage.classList.remove("active")
           activeImage.previousElementSibling.classList.add("active")
+          document.getElementById('slider').scrollLeft -= activeImage.clientWidth + 14
         }
         else {
-          const lastImg = arrThumbnails[arrThumbnails.length-1]
-          lastImg.classList.add("active")
+          // const lastImg = arrThumbnails[arrThumbnails.length-1]
+          // lastImg.classList.add("active")
         }
-        activeImage.scrollIntoView()
       });
       
       buttonRight.addEventListener("click", () => {
         const activeImage = activeImages[0];
-        activeImage.classList.remove("active")
+
         if(activeImage.nextElementSibling) {
+          activeImage.classList.remove("active")
           activeImage.nextElementSibling.classList.add("active");
+          document.getElementById('slider').scrollLeft += activeImage.clientWidth + 14
         }
         else {
-          const firstImg = arrThumbnails[0]
-          firstImg.classList.add("active")
+          // const firstImg = arrThumbnails[0]
+          // firstImg.classList.add("active")
         }
-        activeImage.scrollIntoView()
       });
     </script>
   </body>
